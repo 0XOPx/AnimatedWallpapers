@@ -1,0 +1,9 @@
+dist/
+build/
+*.spec
+
+*.mp4
+
+*.lock
+
+__pycache__/
