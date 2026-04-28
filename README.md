@@ -1,5 +1,11 @@
 # 🐈 Cat-Powered Wallpaper Engine
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Python](https://img.shields.io/badge/Python-3.13+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+
 A high-performance Python script that injects a video loop directly into the Windows `WorkerW` layer.
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8a0eba9a-6c2e-4cee-ba61-a3ea25a3e12e" />
+
 
 ## Features
 - **60 FPS** smooth playback.

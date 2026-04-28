@@ -5,23 +5,18 @@ import cv2
 import numpy as np
 import os
 import sys
-import msvcrt  # Built-in Windows locking
+import msvcrt 
 
 def system_lock():
-    """Prevents double-running by locking a file in the Temp folder."""
     lock_path = os.path.join(os.getenv('TEMP'), 'cat_wallpaper.lock')
-    # Open the file (creates it if it doesn't exist)
     lock_file = open(lock_path, 'w')
     try:
-        # Try to lock the file. If already locked by another wallpaper.exe, fails.
         msvcrt.locking(lock_file.fileno(), msvcrt.LK_NBLCK, 1)
-        return lock_file # Keep the handle open to maintain the lock
+        return lock_file 
     except IOError:
-        # Exit silently because a version is already running
         sys.exit(0)
 
 def get_workerw():
-    """Finds the hidden Windows layer behind the desktop icons."""
     progman = win32gui.FindWindow("Progman", None)
     win32gui.SendMessageTimeout(progman, 0x052C, 0, 0, win32con.SMTO_NORMAL, 1000)
     workerw = [0]
@@ -59,7 +54,6 @@ def main(video_path):
             cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
             continue
 
-        # HIGH CPU MODE: Full quality resize
         frame = cv2.resize(frame, (sw, sh))
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         frame = np.rot90(frame)
@@ -68,14 +62,11 @@ def main(video_path):
         screen.blit(surf, (0, 0))
         pygame.display.flip()
         
-        # Keep it buttery smooth at 60 FPS
         clock.tick(60)
 
 if __name__ == "__main__":
-    # 1. LOCK THE PROCESS FIRST
     _lock = system_lock() 
 
-    # 2. PATH LOGIC FOR EXE
     if getattr(sys, 'frozen', False):
         base_path = os.path.dirname(sys.executable)
     else:
@@ -86,5 +77,4 @@ if __name__ == "__main__":
     if os.path.exists(video_file):
         main(video_file)
     else:
-        # Emergency console print if it fails (only visible if not window-based)
         print(f"Error: video.mp4 not found in {base_path}")
