@@ -1,4 +1,6 @@
 # 🐈 Cat-Powered Wallpaper Engine
+## Info: This project has been Deprecated!
+## You can look at Animated Wallpapers Reimagined.
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python](https://img.shields.io/badge/Python-3.13+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 
